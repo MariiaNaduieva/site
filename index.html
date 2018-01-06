@@ -1,0 +1,1131 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Trekking</title>
+
+  <link rel="stylesheet" href="./font-awesome/css/font-awesome.min.css">
+  <link href='http://fonts.googleapis.com/css?family=Quicksand:300,400,700' rel='stylesheet' type='text/css'>
+<style>
+*, *:before, *:after {
+    box-sizing: border-box;
+}
+.container{
+  padding: 0px 50px;
+}
+.row::after {
+  content: "";
+  clear: both;
+  display: block;
+}
+[class*="col-"] {
+  float: left;
+  padding: 15px;
+}
+body {
+  font-family: "Quicksand", sans-serif;
+}
+.navbar {
+  color: #000;
+  position:fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 60px;
+  background-color: #aa9b77;
+  overflow: hidden;
+  z-index: 1;
+  
+  
+}
+.navbar a {
+  color: #000;
+  text-decoration: none;
+}
+.header {
+  color: #ffffff;
+  margin-top: 80px;
+}
+#category {
+  margin-top: 80px;
+}
+.text-center {
+  text-align: center
+}
+.header-menu-topleft {
+  position:absolute;
+  display: block;
+  top: 0;
+  left: 0;
+  padding: 10px
+}
+.header-menu-topright {
+  position:absolute;
+  display: block;
+  top: 0;
+  right: 0;
+  padding: 10px
+}
+.header-menu-element {
+  display: inline; 
+  padding: 10px
+}
+
+.item {
+  position: relative;
+}
+.item-name {
+  position: absolute;
+  display: inline-block;
+  bottom: 0;
+  left: 0;
+  padding:10% 10%
+}
+.item-price {
+  position:absolute;
+  display: inline-block;
+  bottom: 0;
+  right: 0;
+  padding:10% 10%
+}
+/* For desktop: */
+.col-1 {width: 8.33%;}
+.col-2 {width: 16.66%;}
+.col-3 {width: 25%;}
+.col-4 {width: 33.33%;}
+.col-5 {width: 41.66%;}
+.col-6 {width: 50%;}
+.col-7 {width: 58.33%;}
+.col-8 {width: 66.66%;}
+.col-9 {width: 75%;}
+.col-10 {width: 83.33%;}
+.col-11 {width: 91.66%;}
+.col-12 {width: 100%;}
+
+#slides{
+  position: relative;
+  min-height: 700px;
+  padding: 0px;
+  margin: 0px;
+  list-style-type: none;
+}
+
+.slide{
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  opacity: 1;
+  z-index: 1;
+
+  -webkit-transition: left .8s cubic-bezier(0.77, 0, 0.175, 1);
+  -moz-transition: left 0.8s cubic-bezier(0.77, 0, 0.175, 1);
+  -o-transition: left .8s cubic-bezier(0.77, 0, 0.175, 1);
+  transition: left .8s cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+.showing{
+  opacity: 1;
+  z-index: 2;
+}
+
+
+.controls{
+  display: none;
+}
+
+
+.slide{
+  box-sizing: border-box;
+	width:100%;
+	min-height:700px;
+	background-size:cover;
+	text-align: center;
+}
+
+.slide:nth-of-type(1){
+  background-image: url('./images/bg1.png');
+}
+
+.slide:nth-of-type(2){
+  background-image: url('./images/bg2.png');
+}
+
+.slide:nth-of-type(3){
+  background-image: url('./images/bg3.png');
+}
+
+.header-text {
+  z-index: 12;
+  position:absolute;
+  width: 100%;
+  text-align: center;
+  top: 0;
+  padding: 4em
+}
+.header-text h1{
+	color: #242424;
+	font-size: 2.5em;
+	font-weight: 700;
+}
+.header-text p{
+	color: #242424;
+	font-size: 1.5em;
+	line-height: 1.2em;
+	width: 70%;
+  margin: 1em auto;
+}
+
+.controls{
+  color: #fff;
+  background: none;
+  position: absolute;
+  border: none;
+  padding: 20px 0px;
+  font-size: 30px;
+  cursor: pointer;
+	font-weight: 700;
+  width: 40px
+}
+
+.downbtn{
+  color: #fff;
+  background: none;
+  position: absolute;
+  border: none;
+  bottom: 10px;
+  font-size: 20px;
+  cursor: pointer;
+  text-align: center;
+  width: 100%;
+}
+
+#previous{
+  left: 10px
+}
+#next{
+  right: 10px
+}
+#next1 {
+    border: 1px;width: 100px;height: 100px;z-index: 200;
+}
+
+.controls:hover,
+.controls:focus{
+  color: #333;
+}
+
+.slider-container{
+  position: relative;
+}
+
+.buttons{
+  position: absolute;
+  top: 40%;
+  z-index: 103;
+  font-size: 0px;
+  width: 100%;
+  height: 60%
+}
+
+
+.cb{
+  padding: 15px 10px;
+  font-size: 20px;
+}
+.allprbtn {
+  position: absolute;
+  right: 60px;
+  background-color: chocolate;
+  color: white;
+  border: none;
+  padding: 10px 10px;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+/* sections header line */
+h3.headerline {
+  color: #333333;
+  font-size: 1.5em;
+  padding: 1em 2em;
+  font-weight: 700;
+}
+h3.headerline:after {
+  content: "";
+  background: #ccc;
+  width: 82%;
+  margin: 1em;
+  height: 2px;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+/* slider inner */
+.productslider {
+  display: block;
+  height: 360px;
+  min-width: 260px;
+  max-width: 1280px;
+  margin: auto;
+  margin-top: 20px;
+  position: relative;
+}
+
+.sliderinner {
+  width: 100%;
+  height: 360px;
+  overflow: hidden;
+  position: relative;
+}
+
+.sliderinner>ul {
+  list-style: none;
+  height: 100%;
+  width: 200%;
+  overflow: hidden;
+  position: relative;
+  left: 0px;
+  -webkit-transition: left .8s cubic-bezier(0.77, 0, 0.175, 1);
+  -moz-transition: left .8s cubic-bezier(0.77, 0, 0.175, 1);
+  -o-transition: left .8s cubic-bezier(0.77, 0, 0.175, 1);
+  transition: left .8s cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+.sliderinner>ul>li {
+  width: 12.5%;
+  height: 360px;
+  float: left;
+  position: relative;
+}
+
+.item>img {
+  width: 96%;
+}
+
+.section-controls{
+  color: #242424;
+  background: none;
+  position: absolute;
+  border: none;
+  padding: 20px 0px;
+  font-size: 30px;
+  cursor: pointer;
+	font-weight: 700;
+  width: 40px
+}
+
+#men-previous{
+  left: 10px
+}
+#men-next{
+  right: 10px
+}
+#women-previous{
+  left: 10px
+}
+#women-next{
+  right: 10px
+}
+
+
+.section-controls:hover,
+.section-controls:focus{
+  color: #333;
+}
+
+/* shopping-cart */
+.badge {
+    background-color: chocolate;
+    border-radius: 10px;
+    color: white;
+    display: inline-block;
+    font-size: 12px;
+    line-height: 1;
+    padding: 3px 7px;
+    margin-bottom: 24px;
+    text-align: center;
+    vertical-align: middle;
+    white-space: nowrap;
+}
+.shopping-cart {
+  background: lightgoldenrodyellow;
+  width: 360px;
+  position: fixed;
+  right: 20px;
+  border-radius: 3px;
+  padding: 20px;
+  z-index: 80;
+  display: none;
+}
+.shopping-cart-header {
+  border-bottom: 1px solid chocolate;
+  padding-bottom: 15px;   
+}
+.shopping-cart-total {
+  float: right;
+}
+.shopping-cart-items { 
+  list-style-type: none
+}
+.shopping-cart-items li {
+  margin-bottom: 18px;
+}
+.shopping-cart-items img {
+  float: left;
+  margin-right: 12px;
+  margin-left: -24px;
+}
+.shopping-cart-items .sh-item-name {
+  display: block;
+  padding-top: 10px;
+  font-size: 16px;
+}
+.shopping-cart-items .sh-item-price {
+  color: chocolate;
+  margin-right: 8px;
+}
+.item-quantity {
+  color: chocolate;
+}
+.shopping-cart:after {
+	bottom: 100%;
+	/* left: 89%; */
+	border: solid transparent;
+	content: " ";
+	height: 0;
+	width: 0;
+	position: absolute;
+	pointer-events: none;
+	border-bottom-color: white;
+	border-width: 8px;
+	margin-left: -8px;
+}
+.clearfix:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+.cart-icon {
+  color: #515783;
+  font-size: 24px;
+  margin-right: 7px;
+  float: left;
+}
+.button {
+  background: chocolate;
+  color:white;
+  text-align: center;
+  padding: 12px;
+  text-decoration: none;
+  display: block;
+  border-radius: 3px;
+  font-size: 16px;
+  margin: 25px 0 15px 0;
+}
+.button:hover {
+  background: lighten(chocolate, 30%);
+}
+/* about us */
+.about-us{
+	background:#aa9b77;
+	padding: 2em 0 2em;
+	text-align:center;
+	position:relative;
+	margin-top: 3em;
+}
+.about-us h2{
+	color:#837659;
+	padding:1em 0;
+	font-size: 1.5em;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+.about-us p{
+	color:#424242;
+	padding:1em 0;
+	font-size: 1.3em;
+  width: 72%;
+  margin: 0 auto;
+  font-weight: 600;
+  line-height: 1.8em;
+}
+/*--footer--*/
+.footer {
+  background-color: #424242;
+  color: #ffffff;
+  padding: 1em 0;
+   
+  
+}
+.footer-grid{
+	color:#fff;
+}
+.footer-grid h3{
+	font-size:1.8em;
+	font-weight: 700;
+  text-transform: uppercase;
+}
+.footer-grid p{
+	font-size: 0.8em;
+  line-height: 1.5em;
+  width: 85%;
+  font-weight: 600;
+  text-transform: uppercase;
+  padding: 1em 0 0;
+}
+.footer-grid-in{
+	text-align:right;
+  padding-top: 3em
+}
+.footer-nav li{
+	display:inline-block;
+}
+.footer-nav li a{
+	color: #fff;
+	font-size: 1em;
+	text-transform: uppercase;
+	font-weight: 700;
+	text-decoration:none;
+	padding: 0 0.3em;
+}
+.footer-nav li a:hover{
+	color: #aa9b77;
+}
+p.footer-class{
+	font-weight:700;
+	font-size:1em;
+	padding:0.5em 0 0;
+}
+p.footer-class a{
+	color:#aa9b77;
+	text-decoration:none;
+}
+p.footer-class a:hover{
+	color:#fff;
+}
+
+@media (max-width: 768px) {
+  /* For mobile phones: */
+  [class*="col-"] {
+      width: 100%;
+  }
+
+  .header-text h1{
+    font-size: 1.2em;
+  }
+  .header-text p{
+    font-size: 1em;
+  }
+
+  .sliderinner>ul {
+    width: 800%;
+  }
+
+  .sliderinner>ul>li {
+    width: 12.5%;
+    text-align: center;
+  }
+
+  h3.headerline {
+    font-size: 1em;
+  }
+  .item>img {
+  max-width: 320px;
+}
+}
+</style>
+</head>
+
+  
+<body>
+    <div class="navbar">
+      <div class="header-menu-topleft">
+        <div class="header-menu-element">
+          <a href="#"><img src="./images/boot.png"/></a>
+        </div>
+      </div>
+      <div class="header-menu-topright">
+        <div class="header-menu-element">
+          <a href="#">Home</a>
+        </div>
+        <div class="header-menu-element">
+          <a href="#products">Products</a>
+        </div>
+        <div class="header-menu-element">
+          <a href="#" id="cart"><i class="fa fa-shopping-cart fa-2x" aria-hidden="true" ></i> <span class="badge">3</span></a>
+        </div>
+      </div>
+    </div> 
+
+    <div class="shopping-cart" id="shopping-cart">
+      <div class="shopping-cart-header">
+        <i class="fa fa-shopping-cart cart-icon"></i><span class="badge">3</span>
+        <div class="shopping-cart-total">
+          <span class="lighter-text">Total:</span>
+          <span class="main-color-text">$2,229.97</span>
+        </div>
+      </div> <!--end shopping-cart-header -->
+  
+      <ul class="shopping-cart-items">
+        <li class="clearfix">
+          <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/cart-item1.jpg" alt="item1" />
+          <span class="sh-item-name">Sony DSC-RX100M III</span>
+          <span class="sh-item-price">$849.99</span>
+          <span class="item-quantity">Quantity: 01</span>
+        </li>
+  
+        <li class="clearfix">
+          <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/cart-item2.jpg" alt="item1" />
+          <span class="sh-item-name">KS Automatic Mechanic...</span>
+          <span class="sh-item-price">$1,249.99</span>
+          <span class="item-quantity">Quantity: 01</span>
+        </li>
+  
+        <li class="clearfix">
+          <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/cart-item3.jpg" alt="item1" />
+          <span class="sh-item-name">Kindle, 6" Glare-Free To...</span>
+          <span class="sh-item-price">$129.99</span>
+          <span class="item-quantity">Quantity: 01</span>
+        </li>
+      </ul>
+  
+      <a href="#" class="button">Checkout</a>
+    </div> <!--end shopping-cart -->
+
+    <div class="container">
+      <div class="header">
+        <div class="slider-container">
+          <ul id="slides">
+            <li class="slide showing">
+              <div class="header-text">
+                <h1>Our clothing, your comfort</h1>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+                    magna aliqua.</p>
+              </div>
+            </li>
+            <li class="slide">
+              <div class="header-text">
+                <h1>Have fun with us</h1>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+                    magna aliqua.</p>
+              </div>
+            </li>
+            <li class="slide">
+              <div class="header-text">
+                <h1>Our service, your satisfaction</h1>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+                    magna aliqua.</p>
+              </div>
+            </li>
+          </ul>
+          <div class="buttons">
+            <button class="controls" id="previous">
+              <i class="fa fa-chevron-left" aria-hidden="true"></i>
+            </button>
+            <button class="controls" id="next">
+              <i class="fa fa-chevron-right" aria-hidden="true"></i>
+            </button>
+            <a href="#products" class="downbtn" id="down"><i class="fa fa-chevron-down" aria-hidden="true"></i></a>
+          </div>
+        </div>
+                
+      </div><!--end container -->
+      
+      <a name="products"></a> 
+      <div class="row" id="category">
+        <div class="col-2 cb">
+          <input type="checkbox" checked="true" id="cbmen" name="men" value="men">
+          <label for="cbmen">MEN</label>
+        </div>
+        <div class="col-2 cb">
+            <input type="checkbox" checked="true" id="cbwomen" name="women" value="women">
+            <label for="cbwomen">WOMEN</label>
+        </div>
+        <div class="col-2 cb">
+            <input type="checkbox" checked="true" id="cbchildren" name="children" value="children">
+            <label for="cbchildren">CHILDREN</label>
+        </div>
+        <div class="col-6">
+            <button class="allprbtn" id="allproducts">SEE ALL PRODUCTS</button>
+        </div>
+      </div>
+
+      <div class="row" id="mensection">
+        <h3 class="headerline">MEN</h3> 
+        <div>
+          <button class="section-controls" id="men-previous">
+            <i class="fa fa-chevron-left" aria-hidden="true"></i>
+          </button>
+          <button class="section-controls" id="men-next">
+            <i class="fa fa-chevron-right" aria-hidden="true"></i>
+          </button>
+        </div>
+        <div class="productslider">
+        <div class="sliderinner">
+          <ul id="menlist">
+            <li>
+              <div class="item">
+                <img src="./images/m1.png">
+                <div class="item-name">
+                  <p>T-shirt</p>
+                </div>
+                <div class="item-price">
+                  <p><b>5.00&euro;</b></p>
+                </div>
+              </div>
+            </li>
+        
+            <li>
+              <div class="item">
+                <img src="./images/m2.png">
+                <div class="item-name">
+                  <p>Pants</p>
+                </div>
+                <div class="item-price">
+                  <p><b>30.00&euro;</b></p>
+                </div>
+              </div>
+            </li>
+            
+            <li>
+              <div class="item">
+                <img src="./images/m3.png">
+                <div class="item-name">
+                  <p>Backpack</p>
+                </div>
+                <div class="item-price">
+                  <p><b>60.00&euro;</b></p>
+                </div>
+              </div>
+            </li>
+            
+            <li>
+              <div class="item">
+                <img src="./images/m4.png">
+                <div class="item-name">
+                  <p>Clothes</p>
+                </div>
+                <div class="item-price">
+                  <p><b>30.00&euro;</b></p>
+                </div>
+              </div>
+            </li>
+            
+            <li>
+              <div class="item">
+                <img src="./images/m5.png">
+                <div class="item-name">
+                  <p>Clothes</p>
+                </div>
+                <div class="item-price">
+                  <p><b>5.00&euro;</b></p>
+                </div>
+              </div>
+            </li>
+            
+            <li>
+              <div class="item">
+                <img src="./images/m6.png">
+                <div class="item-name">
+                  <p>Clothes</p>
+                </div>
+                <div class="item-price">
+                  <p><b>30.00&euro;</b></p>
+                </div>
+              </div>
+            </li>
+          
+            <li>
+              <div class="item">
+                <img src="./images/m1.png">
+                <div class="item-name">
+                  <p>Clothes</p>
+                </div>
+                <div class="item-price">
+                  <p><b>60.00&euro;</b></p>
+                </div>
+              </div>
+            </li>
+
+            <li>
+              <div class="item">
+                <img src="./images/m2.png">
+                <div class="item-name">
+                  <p>Clothes</p>
+                </div>
+                <div class="item-price">
+                  <p><b>30.00&euro;</b></p>
+                </div>
+              </div>
+            </li>
+            
+            </ul>
+        </div>
+        </div>
+      </div>
+
+      <div class="row" id="womensection">
+        <h3 class="headerline">WOMEN</h3> 
+        <div>
+          <button class="section-controls" id="women-previous">
+            <i class="fa fa-chevron-left" aria-hidden="true"></i>
+          </button>
+          <button class="section-controls" id="women-next">
+            <i class="fa fa-chevron-right" aria-hidden="true"></i>
+          </button>
+        </div>
+        <div class="productslider">
+        <div class="sliderinner">
+          <ul id="womenlist">
+            
+        <li>
+            <div class="item">
+            <img src="./images/w1.png" >
+            <div class="item-name">
+              <p>T-shirt</p>
+            </div>
+            <div class="item-price">
+              <p><b>20.00&euro;</b></p>
+            </div>
+          </div>
+        
+      
+        <li>
+          <div class="item">
+            <img src="./images/w2.png" >
+            <div class="item-name">
+              <p>Trekking shoes</p>
+            </div>
+            <div class="item-price">
+              <p><b>80.00&euro;</b></p>
+            </div>
+          </div>
+        </li>
+      
+
+      <li>
+        
+          <div class="item">
+            <img src="./images/w3.png" >
+            <div class="item-name">
+              <p>Giacket</p>
+            </div>
+            <div class="item-price">
+              <p><b>60.00&euro;</b></p>
+            </div>
+          </div>
+        
+       </li> 
+
+       <li>
+        
+          <div class="item">
+            <img src="./images/w4.png" >
+            <div class="item-name">
+              <p>Clothes</p>
+            </div>
+            <div class="item-price">
+              <p><b>20.00&euro;</b></p>
+            </div>
+          </div>
+        
+        </li>
+
+        <li>
+        
+          <div class="item">
+            <img src="./images/w5.png" >
+            <div class="item-name">
+              <p>Clothes</p>
+            </div>
+            <div class="item-price">
+              <p><b>30.00&euro;</b></p>
+            </div>
+          </div>
+        
+        </li>
+
+        <li>
+        
+          <div class="item">
+            <img src="./images/w6.png" >
+            <div class="item-name">
+              <p>Clothes</p>
+            </div>
+            <div class="item-price">
+              <p><b>60.00&euro;</b></p>
+            </div>
+          </div>
+        
+        </li>
+
+        <li>
+        
+          <div class="item">
+            <img src="./images/w1.png" >
+            <div class="item-name">
+              <p>Clothes</p>
+            </div>
+            <div class="item-price">
+              <p><b>25.00&euro;</b></p>
+            </div>
+          </div>
+        
+        </li>
+
+        <li>
+        
+          <div class="item">
+            <img src="./images/w2.png" >
+            <div class="item-name">
+              <p>Clothes</p>
+            </div>
+            <div class="item-price">
+              <p><b>30.00&euro;</b></p>
+            </div>
+          </div>
+        
+        </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+      <div class="row" id="childrensection">
+        <h3 class="headerline">CHILDREN</h3> 
+        <div class="col-3">
+          <div class="item">
+            <img src="./images/c1.png" style="width:100%">
+            <div class="item-name">
+              <p>Boots</p>
+            </div>
+            <div class="item-price">
+              <p><b>25.00&euro;</b></p>
+            </div>
+          </div>
+        </div>
+      
+        <div class="col-3">
+          <div class="item">
+            <img src="./images/c2.png" style="width:100%">
+            <div class="item-name">
+              <p>Hoody</p>
+            </div>
+            <div class="item-price">
+              <p><b>30.00&euro;</b></p>
+            </div>
+          </div>
+        </div>
+      
+        <div class="col-3">
+          <div class="item">
+            <img src="./images/c3.png" style="width:100%">
+            <div class="item-name">
+              <p>Pveralls</p>
+            </div>
+            <div class="item-price">
+              <p><b>95.00&euro;</b></p>
+            </div>
+          </div>
+        </div>
+        
+
+      </div>
+    </div>
+    <!--end container -->
+    <div class="about-us">
+      <h2>About Us</h2>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrudexercitation</p>
+    </div>
+
+  
+    <div class="footer">
+    <div class="col-6 footer-grid">
+        <h3>Trekking</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+    </div>
+    <div class="col-6 footer-grid-in">
+      <ul class="footer-nav">
+        <li><a href="#" > Credits </a>|</li>
+        <li><a href="#" > Privacy Policy</a>|</li>
+        <li><a href="#" > About</a>|</li>
+        <li><a href="#" > Contact</a></li>
+      </ul>
+      <p class="footer-class">&copy; 2017 Trekking</p>
+    </div>
+    <div class="clearfix"> </div>
+  </div>
+<script>
+  var controls = document.querySelectorAll('.controls');
+  for(var i=0; i<controls.length; i++){
+      controls[i].style.display = 'inline-block';
+  }
+
+  var slides = document.querySelectorAll('#slides .slide');
+  var currentSlide = 0;
+  var slideInterval = setInterval(nextSlide,5000);
+
+  function nextSlide(){
+      goToSlide(currentSlide+1);
+  }
+
+  function previousSlide(){
+      goToSlide(currentSlide-1);
+  }
+
+  function goToSlide(n){
+      slides[currentSlide].className = 'slide';
+      currentSlide = (n+slides.length)%slides.length;
+      slides[currentSlide].className = 'slide showing';
+  }
+
+
+  var playing = true;
+
+  function pauseSlideshow(){
+      playing = false;
+      clearInterval(slideInterval);
+  }
+
+  function playSlideshow(){
+      playing = true;
+      slideInterval = setInterval(nextSlide,5000);
+  }
+
+  var next = document.getElementById('next');
+  var previous = document.getElementById('previous');
+
+  next.onclick = function(){
+      pauseSlideshow();
+      nextSlide();
+      playSlideshow()
+  };
+  previous.onclick = function(){
+      pauseSlideshow();
+      previousSlide();
+      playSlideshow()
+  };
+
+  // product section buttons
+  var mennext = document.getElementById('men-next');
+  var menprevious = document.getElementById('men-previous');
+
+  var menlist = document.getElementById('menlist');
+  var initleft = 0;
+  var maxw = -200;
+  mennext.onclick = function(){
+   initleft -=100;
+   var w = window.innerWidth;
+   if (w<768) {
+     maxw = -800;
+   }else{
+     maxw = -200;
+   }
+   if (initleft==maxw){
+     initleft = 0;
+   }
+   menlist.style.left = initleft+"%"
+  
+  };
+  menprevious.onclick = function(){
+    initleft +=100;
+    var w = window.innerWidth;
+    if (w<768) {
+      maxw = -700;
+    }else{
+      maxw = -100;
+    }
+    if (initleft==100){
+      initleft = maxw;
+    }
+    menlist.style.left = initleft+"%"
+  };
+//wonem
+var womennext = document.getElementById('women-next');
+  var womenprevious = document.getElementById('women-previous');
+
+  var womenlist = document.getElementById('womenlist');
+  var initleft_w = 0;
+  var maxw_w = -200;
+  womennext.onclick = function(){
+   initleft_w -=100;
+   var w = window.innerWidth;
+   if (w<768) {
+     maxw_w = -800;
+   }else{
+     maxw_w = -200;
+   }
+   if (initleft_w==maxw_w){
+     initleft_w = 0;
+   }
+   womenlist.style.left = initleft_w+"%"
+  
+  };
+  womenprevious.onclick = function(){
+    initleft_w +=100;
+    var w = window.innerWidth;
+    if (w<768) {
+      maxw_w = -700;
+    }else{
+      maxw_w = -100;
+    }
+    if (initleft_w==100){
+      initleft_w = maxw_w;
+    }
+    womenlist.style.left = initleft_w+"%"
+  };
+
+
+  // product section checkbox
+  function toggleSection(checked, sectionId) {
+    var x = document.getElementById(sectionId);
+    if (checked) {
+        x.style.display = "block";
+    } else {
+        x.style.display = "none";
+    }
+  }
+
+  var allprbtn = document.getElementById('allproducts');
+  var cbmen = document.getElementById('cbmen');
+  var cbwomen = document.getElementById('cbwomen');
+  var cbchildren = document.getElementById('cbchildren');
+  allprbtn.onclick = function(){
+    cbmen.checked = true
+    toggleSection(true, 'mensection')
+    cbwomen.checked = true
+    toggleSection(true, 'womensection')
+    cbchildren.checked = true
+    toggleSection(true, 'childrensection')
+  }
+
+  cbmen.onchange = function(){
+    toggleSection(cbmen.checked, 'mensection')
+  }
+
+  cbwomen.onchange = function(){
+    toggleSection(cbwomen.checked, 'womensection')
+  }
+
+  cbchildren.onchange = function(){
+    toggleSection(cbchildren.checked, 'childrensection')
+  }
+
+  // show shopping cart
+  var cart = document.getElementById('cart');
+  cart.onclick = function() {
+    var x = document.getElementById("shopping-cart");
+    if (!x.style.display || x.style.display === "none") {
+        x.style.display = "block";
+    } else {
+        x.style.display = "none";
+    }
+  };
+ 
+
+</script>
+
+
+
